@@ -1,0 +1,12 @@
+uvicorn[standard]
+gunicorn
+fastapi
+requests
+SQLAlchemy
+typing
+pydantic
+psycopg2
+Authlib
+httpx
+itsdangerous
+sqlmodel

@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  psql_auth:
+    image: postgres
+    container_name: psql_auth
+    environment:
+      POSTGRES_USER: izydor
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: bm_dev_auth
+    ports:
+      - 5444:5432
+    volumes:
+      - postgres_data_auth:/var/lib/postgresql/data/
+  api_auth:
+    build:
+      dockerfile: Dockerfile.api
+      context: ./api
+    working_dir: /app
+    volumes:
+      - ./api:/app
+    container_name: api_auth
+    ports:
+      - 8020:8020
+    restart: always
+    network_mode: "host"
+    depends_on:
+      - psql_auth
+
+volumes:
+  postgres_data_auth:
