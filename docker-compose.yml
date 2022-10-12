@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_cache:/data
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: ./api
+    working_dir: /app
+    volumes:
+      - ./api:/app
+    container_name: api_auth
+    ports:
+      - 8020:8020
+    restart: always
+    network_mode: "host"
+    depends_on:
+      - psql_auth
+
+volumes:
+  redis_cache:
