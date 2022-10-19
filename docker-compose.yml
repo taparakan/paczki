@@ -14,7 +14,7 @@ services:
       - postgres_data_auth:/var/lib/postgresql/data/
   api_auth:
     build:
-      dockerfile: Dockerfile.api
+      dockerfile: Dockerfile
       context: ./api
     working_dir: /app
     volumes:

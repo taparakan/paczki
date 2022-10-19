@@ -2,16 +2,18 @@ from datetime import datetime
 from pydantic import BaseModel
 from typing import Optional
 
-class ApiUser(BaseModel):
-    user_id: int
-    api_user_id: str
-    email: str
-    provider: str
+class User(BaseModel):
+    username: str
 
-
-#expiration date in unix epoch time
-class UserToken(BaseModel):
+class Parcel(BaseModel):
     id: int
-    token: str
-    user_id: int
-    expires: int
+    name: str
+    from_locker_id: int
+    to_locker_id: int
+    sender_id: int
+    receiver_id: int
+    state: str
+
+class ParcelLocker(BaseModel):
+    id: int
+    name: str

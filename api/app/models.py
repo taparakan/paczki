@@ -1,15 +1,21 @@
 from sqlmodel import SQLModel, Field
 from typing import Optional
 
-class ApiUser(SQLModel, table=True):
-    user_id: Optional[int] = Field(default=None, primary_key=True)
-    api_user_id: str
-    email: str
-    provider: str
+class UserBase(SQLModel):
+    username: str
 
-class UserToken(SQLModel, table=True):
+class User(UserBase, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-    token: str
-    user_id: int
-    expires: int
     
+class Parcel(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str
+    from_locker_id: int
+    to_locker_id: int
+    sender_id: int
+    receiver_id: int
+    state: str
+
+class ParcelLocker(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str
