@@ -9,19 +9,19 @@ services:
       POSTGRES_PASSWORD: test
       POSTGRES_DB: bm_dev_auth
     ports:
-      - 5444:5432
+      - 7777:5432
     volumes:
       - postgres_data_auth:/var/lib/postgresql/data/
-  api_auth:
+  inpost_api_auth:
     build:
       dockerfile: Dockerfile
       context: ./api
     working_dir: /app
     volumes:
       - ./api:/app
-    container_name: api_auth
+    container_name: inpost_api_auth
     ports:
-      - 8020:8020
+      - 9900:9900
     restart: always
     network_mode: "host"
     depends_on:
